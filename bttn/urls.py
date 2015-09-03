@@ -15,5 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 
+from icloud_warn.views import FindMyPhoneView
+
 urlpatterns = [
+    url(r"^find_my_phone/$", FindMyPhoneView.as_view(), name="find_my_phone"),
 ]

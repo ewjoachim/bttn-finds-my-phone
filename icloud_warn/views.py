@@ -3,7 +3,7 @@ from django.views.generic import View
 from django import http
 
 
-class ICloudWarnView(View):
+class FindMyPhoneView(View):
 
     def post(self, request):
         api = PyiCloudService(request.POST["email"], request.POST["password"])

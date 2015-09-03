@@ -25,13 +25,13 @@ SECRET_KEY = 'gywo&mlr!^(z+0evkt*ht@w%t#g#z&+7_i87vy!2*e#v*hg$xt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["powerful-wave-5962.herokuapp.com/"]
 
 
 # Application definition
 
 INSTALLED_APPS = (
-    'icloud_warn'
+    'icloud_warn',
 )
 
 MIDDLEWARE_CLASSES = (
