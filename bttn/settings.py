@@ -25,8 +25,11 @@ SECRET_KEY = 'gywo&mlr!^(z+0evkt*ht@w%t#g#z&+7_i87vy!2*e#v*hg$xt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["powerful-wave-5962.herokuapp.com/"]
+ALLOWED_HOSTS = ["127.0.0.1", "powerful-wave-5962.herokuapp.com"]
 
+ADMINS = ["ewjoachim@gmail.com"]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Application definition
 
