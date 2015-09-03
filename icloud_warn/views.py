@@ -11,7 +11,7 @@ class FindMyPhoneForm(forms.Form):
     phone_name = forms.CharField()
 
 class FindMyPhoneView(BaseFormView):
-    success_url = "find_my_phone"
+    success_url = "./"
     form_class = FindMyPhoneForm
 
     @method_decorator(csrf_exempt)
@@ -23,3 +23,6 @@ class FindMyPhoneView(BaseFormView):
         d = [device for device in api.devices if device["name"] == form.cleaned_data["phone_name"]][0]
         d.play_sound()
         return super().form_valid(form)
+
+    def render_to_response(self, *args, **kwargs):
+        return http.HttpResponse("OK")
