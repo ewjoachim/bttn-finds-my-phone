@@ -42,3 +42,7 @@ So you'll use these parameters for both testing and in the bt.tn interface.
 ## And that's all ?
 
 No, once you've done that, [drop me a line](https://twitter.com/Ewjoachim) and then we'll both be very happy.
+
+### License ?
+
+[License](License.md)
