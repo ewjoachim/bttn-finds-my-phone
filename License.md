@@ -1,5 +1,8 @@
 Copyright (c) 2015 Joachim Jablon
 
+(All copyrighted names are used without anybody's explicit consent, but
+feel free to contact me if you don't like it)
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
