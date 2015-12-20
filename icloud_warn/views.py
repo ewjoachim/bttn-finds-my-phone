@@ -1,4 +1,5 @@
-from pyicloud import PyiCloudService
+import json
+from pyicloud import PyiCloudService, exceptions
 from django.views.generic.edit import BaseFormView
 from django import http
 from django import forms
@@ -19,10 +20,27 @@ class FindMyPhoneView(BaseFormView):
         return super(FindMyPhoneView, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
-        api = PyiCloudService(form.cleaned_data["email"], form.cleaned_data["password"])
-        d = [device for device in api.devices if device["name"] == form.cleaned_data["phone_name"]][0]
-        d.play_sound()
-        return super().form_valid(form)
+        try:
+            try:
+                api = PyiCloudService(form.cleaned_data["email"], form.cleaned_data["password"])
+            except exceptions.PyiCloudFailedLoginException:
+                raise forms.ValidationError("Invalid email or password.")
 
-    def render_to_response(self, *args, **kwargs):
+            devices = [device for device in api.devices if device["name"] == form.cleaned_data["phone_name"]]
+            try:
+                device = devices[0]
+            except IndexError:
+                raise forms.ValidationError({"phone_name": "Device {} not found".format(form.cleaned_data["phone_name"])})
+
+        except forms.ValidationError as exc:
+            form.add_error(None, exc)
+            return self.render_to_response({"form": form})
+
+        else:
+            device.play_sound()
+            return super().form_valid(form)
+
+    def render_to_response(self, context):
+        if "form" in context and context["form"].is_bound and not context["form"].is_valid():
+            return http.HttpResponseBadRequest(json.dumps(context["form"].errors))
         return http.HttpResponse("OK")
